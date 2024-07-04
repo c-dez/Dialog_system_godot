@@ -46,7 +46,7 @@ func PrintText(_dialog:Array):
         
 
 func Connect_Childs():
-    for childs in range(0, container.get_child_count()-1):
+    for childs in range(0, container.get_child_count()):
         container.get_child(childs).pressed.connect(_button_pressed)
     pass
 
