@@ -27,7 +27,7 @@ func AdvanceText():
         if Input.is_action_just_pressed("space") and can_use_space:
             index += 1
             if index >= dialog_block.size():
-                print("end of string ", index)
+                print("end of string, index: ", index)
             else:
                 PrintText(dialog_block)
 
@@ -53,10 +53,14 @@ func Connect_Childs():
 
 func _button_pressed():
     index += 1
+    # kill the childs
     for child in range(container.get_child_count()-1, -1, -1):
         container.get_child(child).queue_free()
     text_area.text = dialog_block[index]
     can_use_space = true
+
+
+    
     
 
     
