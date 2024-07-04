@@ -39,14 +39,16 @@ func PrintText(_dialog:Array):
     match string:
         "_yes_no":
             buttons_class.Two_Buttons(container, "yes", "no") 
-            container.get_child(0).pressed.connect(_button_pressed)
-            container.get_child(1).pressed.connect(_button_pressed)
+            Connect_Childs()
             can_use_space = false
         _:
             text_area.text = _dialog[index]
         
 
-
+func Connect_Childs():
+    for childs in range(container.get_child_count()-1, -1, -1):
+        container.get_child(childs).pressed.connect(_button_pressed)
+    pass
 
 
 func _button_pressed():
