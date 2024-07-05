@@ -41,21 +41,25 @@ func PrintText(_dialog:Array):
             buttons_class.Two_Buttons(container, "yes", "no") 
             Connect_Childs()
             can_use_space = false
+        "create_button":
+            buttons_class.Create_Button(container , "1 button", "print this")
+            Connect_Childs()
+            can_use_space = false
         _:
             text_area.text = _dialog[index]
         
 
 func Connect_Childs():
-    for childs in range(0, container.get_child_count()):
-        container.get_child(childs).pressed.connect(_button_pressed)
+    for child in range(0, container.get_child_count()):
+        container.get_child(child).pressed.connect(_button_pressed)
     pass
 
 
 func _button_pressed():
-    index += 1
     # kill the childs
     for child in range(container.get_child_count()-1, -1, -1):
         container.get_child(child).queue_free()
+    index += 1
     text_area.text = dialog_block[index]
     can_use_space = true
 

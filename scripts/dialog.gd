@@ -6,12 +6,14 @@ var nombre = "qwer"
 
 var test1 := [
     "0", 
+    "create_button",
     "1",
     "_yes_no",
     "3",
     "4",
     "_yes_no",
     "6?",
+
 
 ]
 

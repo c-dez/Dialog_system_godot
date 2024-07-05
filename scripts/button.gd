@@ -1,12 +1,13 @@
 extends Button
 
-var value
+var value:String = "default value"
 
-# func _init():
-#     print(text)
 
 func _physics_process(_delta):
     pressed.connect(_button_pressed)
 
 func _button_pressed():
-    print("pressed: ", text)
+    print("pressed: ", text," --value: ", value)
+    # append el value a un string para almacenar las deciciones tomadas por el jugador
+
+
