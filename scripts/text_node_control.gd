@@ -33,12 +33,18 @@ func PrintText(_dialog:Array):
     var string:String = _dialog[index]
     # checo que var string contenga una de las palabras que uso de comando en el array de dialogo
     # si es una de ellas, ejecuto accion si no imprime texto
-    if string.contains("yes_no"):
+    if string.contains("create_two_buttons"):
 
-        # TODO: HACER QUE LOS DOS BOTONES CREADOS SEA AUTOMATICO POR CODIGO
         # TODO: CAMBIAR BRANCH DE DIALOGO SEGUN OPCIONES ELEGIDAS POR JUGADOR
 
-        buttons_class.Two_Buttons(container, "yes", "no") 
+        var splited_array:Array = string.split(" ")
+        # array[0] = command
+        # array[1] = button 1 title
+        # array[2] = button 2 title
+        # array[3] = button 1 value
+        # array [4] = button 2 value
+
+        buttons_class.Create_Two_Buttons(container, splited_array[1],splited_array[2],splited_array[3], splited_array[4]) 
         Connect_Childs_Button_Pressed()
         can_use_space = false
     elif string.contains("create_button"):
