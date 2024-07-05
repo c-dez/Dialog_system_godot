@@ -3,11 +3,9 @@ extends Node2D
 @onready var text_area:RichTextLabel = get_node("TextArea")
 @onready var container:VBoxContainer = get_node("Container")
 @onready var buttons_class := ButtonsClass.new()
-
 var index:int = -1
-var scene_dialog:TutorialDialog
+var scene_dialog:TutorialDialog # hardcoded cambiar en el futuro
 var dialog_block:Array
-
 var can_use_space:bool = true
 
 
@@ -18,8 +16,6 @@ func _ready():
 func _physics_process(_delta):
     Debug()
     AdvanceText()
-
-
 
 
 func AdvanceText():
@@ -35,16 +31,20 @@ func AdvanceText():
 
 func PrintText(_dialog:Array):
     var string:String = _dialog[index]
-    # comparo 'string' para decidir accion
-
-    
+    # checo que var string contenga una de las palabras que uso de comando en el array de dialogo
+    # si es una de ellas, ejecuto accion si no imprime texto
     if string.contains("yes_no"):
+
+        # TODO: HACER QUE LOS DOS BOTONES CREADOS SEA AUTOMATICO POR CODIGO
+        # TODO: CAMBIAR BRANCH DE DIALOGO SEGUN OPCIONES ELEGIDAS POR JUGADOR
+
         buttons_class.Two_Buttons(container, "yes", "no") 
         Connect_Childs_Button_Pressed()
         can_use_space = false
     elif string.contains("create_button"):
         # divide el string en palabras y lo almacena en un array(new_array)
         # uso  este array para pasar cada palabra pro su indice a Create_Button()
+        # new_array = var splited_array
         # new_array[0] = comand
         # new_array[1] = title
         # new_array[2] = value
@@ -54,6 +54,7 @@ func PrintText(_dialog:Array):
         can_use_space = false
     else:
         text_area.text = _dialog[index]
+
 
     # ANTES USABA MATCH PERO CREO QUE IF ELSE SE AJUSTA MEJOR A LO QUE QUIERO
     # match string:
@@ -78,19 +79,18 @@ func Connect_Childs_Button_Pressed():
 
 func _button_pressed():
     #se encarga  de destruir los childs de container(botones) , avanzar el texto y reabilita  el uso de space key
-    # kill the childs
+    # kill all childs!
     for child in range(container.get_child_count()-1, -1, -1):
         container.get_child(child).queue_free()
     index += 1
     text_area.text = dialog_block[index]
     can_use_space = true
 
-
-    
-    
-
     
 func SelectDialogue():
+
+    # TODO: ESTA HARCODE ELEGIR EL DIALOGO, VOY A QUERER QUE LO ELIGA DINAMICAMENTE
+
     scene_dialog = TutorialDialog.new()
     dialog_block = scene_dialog.test1
     pass

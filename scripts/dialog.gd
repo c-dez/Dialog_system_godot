@@ -3,12 +3,13 @@ class_name TutorialDialog
 
 var nombre = "qwer"
 
-
+# FORMAT para comandos "nombre_comando title value"
+# mas adelante me voy a encontrar con el problema que el titulo va a ser mas de una palabra, en vez de separarlas con " " separarlas con "_' y hacer cambiar "_" por " " en esa palabra
 var test1 := [
     "0", 
-    "create_button",
+    "create_button qwery qwerty2",
     "1",
-    "yes_no asda" ,
+    "yes_no asda split" ,
     "3",
     "4",
     "yes_no",

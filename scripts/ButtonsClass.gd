@@ -14,7 +14,6 @@ func Two_Buttons(father_node:Container, button1_title:String, button2_title:Stri
 	var b = button.instantiate()
 	father_node.add_child(a)
 	father_node.add_child(b)
-
 	a.text = button1_title
 	b.text = button2_title
     
