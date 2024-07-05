@@ -8,10 +8,10 @@ var test1 := [
     "0", 
     "create_button",
     "1",
-    "_yes_no",
+    "yes_no asda" ,
     "3",
     "4",
-    "_yes_no",
+    "yes_no",
     "6?",
 
 

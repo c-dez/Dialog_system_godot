@@ -8,6 +8,6 @@ func _physics_process(_delta):
 
 func _button_pressed():
     print("pressed: ", text," --value: ", value)
-    # append el value a un string para almacenar las deciciones tomadas por el jugador
+    # TODO: append el value a un string para almacenar las deciciones tomadas por el jugador
 
 

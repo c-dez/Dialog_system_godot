@@ -36,9 +36,9 @@ func AdvanceText():
 func PrintText(_dialog:Array):
     var string:String = _dialog[index]
     # comparo 'string' para decidir accion
-    # var contains:bool
-
-    if string.contains("_yes_no"):
+    
+    # TODO: CREAR UNA FORMA DE CREAR DINAMICAMENTE LOS BOTONES CON TITULO Y VALOR SEGUN EL STRING QUE SE COMPARA
+    if string.contains("yes_no"):
         buttons_class.Two_Buttons(container, "yes", "no") 
         Connect_Childs()
         can_use_space = false
@@ -49,6 +49,7 @@ func PrintText(_dialog:Array):
     else:
         text_area.text = _dialog[index]
 
+    # ANTES USABA MATCH PERO CREO QUE IF ELSE SE AJUSTA MEJOR A LO QUE QUIERO
     # match string:
     #     "_yes_no":
     #         buttons_class.Two_Buttons(container, "yes", "no") 
