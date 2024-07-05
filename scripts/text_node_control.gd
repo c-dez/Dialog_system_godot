@@ -36,26 +36,41 @@ func AdvanceText():
 func PrintText(_dialog:Array):
     var string:String = _dialog[index]
     # comparo 'string' para decidir accion
-    match string:
-        "_yes_no":
-            buttons_class.Two_Buttons(container, "yes", "no") 
-            Connect_Childs()
-            can_use_space = false
-        "create_button":
-            buttons_class.Create_Button(container , "1 button", "print this")
-            Connect_Childs()
-            can_use_space = false
-        _:
-            text_area.text = _dialog[index]
+    # var contains:bool
+
+    if string.contains("_yes_no"):
+        buttons_class.Two_Buttons(container, "yes", "no") 
+        Connect_Childs()
+        can_use_space = false
+    elif string.contains("create_button"):
+        buttons_class.Create_Button(container , "1 button", "print this")
+        Connect_Childs()
+        can_use_space = false
+    else:
+        text_area.text = _dialog[index]
+
+    # match string:
+    #     "_yes_no":
+    #         buttons_class.Two_Buttons(container, "yes", "no") 
+    #         Connect_Childs()
+    #         can_use_space = false
+    #     "create_button":
+    #         buttons_class.Create_Button(container , "1 button", "print this")
+    #         Connect_Childs()
+    #         can_use_space = false
+    #     _:
+    #         text_area.text = _dialog[index]
         
 
 func Connect_Childs():
+    # a cada child conecta la senal de _button_pressed
     for child in range(0, container.get_child_count()):
         container.get_child(child).pressed.connect(_button_pressed)
     pass
 
 
 func _button_pressed():
+    #se encarga  de destruir los childs de container(botones) , avanzar el texto y reabilita  el uso de space key
     # kill the childs
     for child in range(container.get_child_count()-1, -1, -1):
         container.get_child(child).queue_free()
