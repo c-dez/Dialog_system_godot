@@ -36,34 +36,40 @@ func AdvanceText():
 func PrintText(_dialog:Array):
     var string:String = _dialog[index]
     # comparo 'string' para decidir accion
+
     
-    # TODO: CREAR UNA FORMA DE CREAR DINAMICAMENTE LOS BOTONES CON TITULO Y VALOR SEGUN EL STRING QUE SE COMPARA
     if string.contains("yes_no"):
         buttons_class.Two_Buttons(container, "yes", "no") 
-        Connect_Childs()
+        Connect_Childs_Button_Pressed()
         can_use_space = false
     elif string.contains("create_button"):
-        buttons_class.Create_Button(container , "1 button", "print this")
-        Connect_Childs()
+        # divide el string en palabras y lo almacena en un array(new_array)
+        # uso  este array para pasar cada palabra pro su indice a Create_Button()
+        # new_array[0] = comand
+        # new_array[1] = title
+        # new_array[2] = value
+        var splited_array:Array = string.split(" ")
+        buttons_class.Create_Button(container , splited_array[1], splited_array[2])
+        Connect_Childs_Button_Pressed()
         can_use_space = false
     else:
         text_area.text = _dialog[index]
 
     # ANTES USABA MATCH PERO CREO QUE IF ELSE SE AJUSTA MEJOR A LO QUE QUIERO
     # match string:
-    #     "_yes_no":
+    #     "yes_no":
     #         buttons_class.Two_Buttons(container, "yes", "no") 
-    #         Connect_Childs()
+    #         Connect_Childs_Button_Pressed()
     #         can_use_space = false
     #     "create_button":
     #         buttons_class.Create_Button(container , "1 button", "print this")
-    #         Connect_Childs()
+    #         Connect_Childs_Button_Pressed()
     #         can_use_space = false
     #     _:
     #         text_area.text = _dialog[index]
         
 
-func Connect_Childs():
+func Connect_Childs_Button_Pressed():
     # a cada child conecta la senal de _button_pressed
     for child in range(0, container.get_child_count()):
         container.get_child(child).pressed.connect(_button_pressed)
@@ -95,5 +101,5 @@ func Debug():
         # print("current scene: ", current_scene)
         print("current index: " , index)
         # print(container.get_child_count()-1)
-
+        # print(dialog_block[3].split(" ")[1])
         pass
