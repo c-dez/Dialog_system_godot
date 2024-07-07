@@ -3,7 +3,7 @@ extends Button
 var value:String = "default value"
 
 
-func _physics_process(_delta):
+func _ready():
     pressed.connect(_button_pressed)
 
 func _button_pressed():
